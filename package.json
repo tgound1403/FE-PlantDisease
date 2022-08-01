@@ -76,8 +76,7 @@
   },
   "devDependencies": {
     "css-loader": "^6.3.0",
-    "react-error-overlay": "^6.0.9",
-    "webpack": "^4.46.0"
+    "react-error-overlay": "^6.0.9"
   },
   "type": "module"
 }
