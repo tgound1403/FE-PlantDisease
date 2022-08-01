@@ -1,6 +1,7 @@
 {
   "name": "plant_disease_frontend",
   "proxy": "http://localhost:4000",
+  "homepage": "/home",
   "engines": {
     "node": "16.x"
   },
