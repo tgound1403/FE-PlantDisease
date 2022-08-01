@@ -1,0 +1,125 @@
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  z-index: 1;
+  background-color: var(--primary-color);
+  width: 100vw;
+}
+
+.header.active {
+  background-color: var(--primary-color);
+  padding-bottom: 10px;
+  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.1);
+}
+
+.header__wrap {
+  margin: 0 -20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  font-size: 3.5rem;
+  font-weight: 700;
+  font-family: "UVF";
+}
+
+.header__logo-text {
+  color: var(--secondary-color);
+}
+
+.header__logo-text-right {
+  color: var(--white-color);
+}
+
+.header__nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.header__nav-item {
+  /* padding: 2px 12px; */
+  color: var(--black-color);
+  font-weight: 500;
+  /* font-family: "Bree"; */
+  display: block;
+  right: 0;
+}
+
+.header__nav-item:hover {
+  background-color: #fff;
+  border-radius: 8px;
+  animation: hoverAnimation 0.2s ease-out forwards;
+}
+
+.header__nav-item.active {
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--black-blue-color);
+  background-color: var(--white-color);
+}
+
+.header__nav-item + .header__nav-item {
+  margin-left: 16px;
+}
+
+p.header__nav-right {
+  padding: 6px 20px;
+  font-size: 20px;
+}
+
+.header__img {
+  background-color: aqua;
+}
+
+.danger {
+  color: red;
+  text-align: center;
+  /* font-size: 14px; */
+}
+
+@keyframes hoverAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.forget-password {
+  position: relative;
+  color: var(--secondary-color);
+  text-decoration: none;
+  z-index: 1;
+  padding: 0.2rem;
+  font-size: 1.5rem;
+  right: 0;
+  transition: color 0.3s;
+}
+
+.forget-password::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 92% 0 0 0;
+  background-color: var(--secondary-color);
+  transition: inset 0.2s;
+  width: 145px;
+}
+
+.forget-password:hover {
+  color: white;
+}
+
+.forget-password:hover::after {
+  inset: 0 0 0 0;
+}

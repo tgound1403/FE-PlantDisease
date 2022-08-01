@@ -1,0 +1,25 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn__login {
+  border-style: none;
+  width: 20%;
+  background-color: var(--secondary-color);
+  cursor: pointer;
+  color: aliceblue;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  padding: 10px 5px;
+  margin: 0 auto;
+  margin-top: 25px;
+  display: block;
+}
+
+.btn__login:hover {
+  opacity: 0.7;
+}
+
