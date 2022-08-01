@@ -61,7 +61,7 @@ export const Forum = () => {
     }
   }
 
-  React.useEffect(() => { if (currentUser) { fetchPosts() } else { setIsOpenModal(true) } }, [currentUser, fetchPosts])
+  React.useEffect(() => { if (currentUser) { fetchPosts() } else { setIsOpenModal(true) } }, [currentUser])
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleOnScroll);

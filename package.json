@@ -5,6 +5,8 @@
     "node": "16.x"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "@reduxjs/toolkit": "^1.8.3",
     "async_hooks": "^1.0.0",
     "axios": "^0.22.0",
@@ -19,6 +21,7 @@
     "react-app-polyfill": "^3.0.0",
     "react-bootstrap": "^1.6.4",
     "react-dom": "^17.0.2",
+    "react-error-boundary": "^3.1.4",
     "react-icon": "^1.0.0",
     "react-icons": "^4.3.1",
     "react-image-file-resizer": "^0.4.8",
@@ -61,9 +64,8 @@
     ]
   },
   "devDependencies": {
-    "css-loader": "^6.3.0",
     "react-error-overlay": "^6.0.9",
-    "webpack": "^5.74.0"
+    "webpack": "^4.46.0"
   },
   "type": "module"
 }
