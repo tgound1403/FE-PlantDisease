@@ -1,6 +1,9 @@
 {
   "name": "plant_disease_frontend",
   "proxy": "http://localhost:4000",
+  "engines": {
+    "npm": "16.x"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "async_hooks": "^1.0.0",
