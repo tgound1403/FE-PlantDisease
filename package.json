@@ -1,6 +1,5 @@
 {
   "name": "plant_disease_frontend",
-  "proxy": "http://localhost:4000",
   "homepage": "/home",
   "engines": {
     "node": "16.x"
@@ -16,6 +15,7 @@
     "compress.js": "^1.2.2",
     "core-js": "^3.22.7",
     "env": "0.0.2",
+    "http-proxy-middleware": "^2.0.6",
     "moment": "^2.29.4",
     "path": "^0.12.7",
     "react": "^17.0.2",
