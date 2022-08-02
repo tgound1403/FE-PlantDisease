@@ -7,7 +7,7 @@ import {
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
 } from "../api/commentAPI.js";
-
+require('dotenv').config()
 const axios = require('axios');
 
 
@@ -60,7 +60,7 @@ const Comments = ({ commentsUrl, currentUserId, closeModal }) => {
   };
 
   const getComments = () => {
-    axios.get('/api/comments')
+    axios.get(`${process.env.BACKEND_API_URL}/api/comments`)
       .then((response) => {
         let data = response.data;
         data = data.reverse()

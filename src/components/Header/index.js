@@ -64,10 +64,12 @@ export const Header = ({ isOpenModal, setIsOpenModal }) => {
       const config = {
         headers: {
           "Content-type": "application/json",
+          "Access-Control-Allow-Origin": "*"
         },
       };
       const { data } = await axios.post(
-        "/api/users/login",
+        `${process.env.BACKEND_API_URL || 'https://desolate-everglades-44147.herokuapp.com'}/api/users/login`,
+
         {
           email,
           password,
@@ -81,7 +83,7 @@ export const Header = ({ isOpenModal, setIsOpenModal }) => {
       console.log(data);
       // localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       setError("Email hoặc mật khẩu không đúng, vui lòng thử lại");
       dispatch(loginFailure());
       console.log("User not found, please check again or register");
@@ -128,10 +130,11 @@ export const Header = ({ isOpenModal, setIsOpenModal }) => {
           const config = {
             headers: {
               "Content-type": "application/json",
+              "Access-Control-Allow-Origin": "*",
             },
           };
           const { data } = await axios.post(
-            "/api/users",
+            `${process.env.BACKEND_API_URL || 'https://desolate-everglades-44147.herokuapp.com'}/api/users`,
             {
               name,
               email,

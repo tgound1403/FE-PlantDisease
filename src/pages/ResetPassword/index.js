@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import "./index.css";
+import 'dotenv/config'
 const axios = require('axios');
 
 export const ResetPassword = () => {
@@ -23,7 +24,7 @@ export const ResetPassword = () => {
       };
       console.log('resetting password')
       const { data } = await axios.post(
-        '/api/users/send-reset/:token',
+        `${process.env.BACKEND_API_URL}/api/users/send-reset/:token`,
         {
           password
         },
@@ -66,7 +67,7 @@ export const ResetPassword = () => {
             onChange={(e) => setRetypePassword(e.target.value)}
             value={retypePassword}
           />
-          
+
           <button
             className="btn-send"
             variant="primary"

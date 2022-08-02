@@ -1,6 +1,7 @@
 import { Header } from "../../components/Header";
 import React, { useEffect, useState } from "react";
 import "./index.css";
+import 'dotenv/config';
 import axios from "axios";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -50,7 +51,7 @@ export const Profile = () => {
 
     axios({
       method: "POST",
-      url: `/api/users/edit-profile/${currentUser._id}`,
+      url: `${process.env.BACKEND_API_URL}/api/users/edit-profile/${currentUser._id}`,
       data: { firstName, lastName, birthday, phoneNumber, gender },
       headers: { "Content-Type": "application/json" },
     })
@@ -63,7 +64,7 @@ export const Profile = () => {
   };
 
   const getUserInfo = () => {
-    axios.get(`/api/users/info/${currentUser._id}`)
+    axios.get(`${process.env.BACKEND_API_URL}/api/users/info/${currentUser._id}`)
       .then((res) => {
         const data = res.data;
         setFirstNameDB(data.firstName);

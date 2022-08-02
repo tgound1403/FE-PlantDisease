@@ -75,7 +75,7 @@ function PostModal({ closeModal, initialText = "hi" }) {
     request.append("image", imageToUpload);
     axios({
       method: "POST",
-      url: "/api/post-with-img",
+      url: `${process.env.BACKEND_API_URL || 'https://desolate-everglades-44147.herokuapp.com'}/api/post-with-img`,
       data: request,
       headers: { "Content-Type": "multipart/form-data" },
     })

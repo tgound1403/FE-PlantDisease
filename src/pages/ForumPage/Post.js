@@ -3,7 +3,7 @@ import CommentModal from "../../comments/CommentModal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { BiUpvote, BiDownvote, BiComment, BiShareAlt } from "react-icons/bi";
 import { format } from 'timeago.js'
-
+require('dotenv').config()
 const axios = require('axios');
 const Post = () => {
   const [openComment, setOpenComment] = useState(false);
@@ -66,7 +66,7 @@ const Post = () => {
 
   const getPosts = () => {
     setIsLoading(true)
-    axios.get("/api/posts")
+    axios.get(`${process.env.BACKEND_API_URL || 'https://desolate-everglades-44147.herokuapp.com'}/api/posts`)
       .then((res) => {
         const data = res.data;
         let reverseData = data.reverse()
