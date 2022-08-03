@@ -60,7 +60,7 @@ const Comments = ({ commentsUrl, currentUserId, closeModal }) => {
   };
 
   const getComments = () => {
-    axios.get(`${process.env.BACKEND_API_URL}/api/comments`)
+    axios.get(`${process.env.BACKEND_API_URL || "https://desolate-everglades-44147.herokuapp.com"}/api/comments`)
       .then((response) => {
         let data = response.data;
         data = data.reverse()
