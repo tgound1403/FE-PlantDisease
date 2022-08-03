@@ -7,8 +7,8 @@ import { Header } from "../../components/Header";
 import "./index.css";
 
 export const VerifyEmail = () => {
-  const [isOpenModal, setIsOpenModal] = React.useState('');  
-  
+  const [isOpenModal, setIsOpenModal] = React.useState("");
+
   const handleOpenModal = () => {
     setIsOpenModal(true);
   };
@@ -20,7 +20,9 @@ export const VerifyEmail = () => {
       <div className="page-container">
         <p className="page-heading">Your email has been verified successful</p>
 
-        <button className="btn__login" onClick={handleOpenModal}>Back to login</button>
+        <button className="btn__login" onClick={handleOpenModal}>
+          Back to login
+        </button>
       </div>
       <Footer></Footer>
     </div>

@@ -1,6 +1,6 @@
 // Components
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 // Components
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
@@ -10,13 +10,12 @@ import "./index.css";
 import BlockModal from "./BlockModal.js";
 import { getPersonalPosts } from "../../api/personalPostAPI";
 
-
 export const ProfilePage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [openBlock, setOpenBlock] = useState(false);
   const history = useHistory();
 
-  const PersonalPost = personalPost => (
+  const PersonalPost = (personalPost) => (
     <div className="thread">
       <div className="user-overview">
         <div className="left-section">
@@ -32,16 +31,13 @@ export const ProfilePage = () => {
         </div>
       </div>
       <p className="status">{personalPost.status}</p>
-      <img
-        src={personalPost.image}
-        alt=""
-        className="post-img"
-      />
-    </div>)
+      <img src={personalPost.image} alt="" className="post-img" />
+    </div>
+  );
 
   const toProfileEdit = () => {
-    history.push('/profile')
-  }
+    history.push("/profile");
+  };
 
   return (
     <div>
@@ -57,7 +53,9 @@ export const ProfilePage = () => {
           ></img>
           <div className="profile-left-section">
             <div>
-              <p className="profile-name" onClick={toProfileEdit}>Nguyen Trieu Duong</p>
+              <p className="profile-name" onClick={toProfileEdit}>
+                Nguyen Trieu Duong
+              </p>
               <div className="user-level">Vip</div>
             </div>
             <p className="number">6</p>
@@ -81,14 +79,13 @@ export const ProfilePage = () => {
         </div>
 
         <div className="timeline">
-          {getPersonalPosts.map(personalPost => (
+          {getPersonalPosts.map((personalPost) => (
             <PersonalPost
               status={personalPost.status}
               image={personalPost.image}
               createTime={personalPost.createTime}
             />
           ))}
-
         </div>
       </div>
       <Footer />

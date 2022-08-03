@@ -21,30 +21,30 @@ export const Forum = () => {
 
   const [backendPosts, setBackendPosts] = useState([]);
 
-  const { currentUser } = useSelector(state => state.user);
+  const { currentUser } = useSelector((state) => state.user);
 
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([]);
 
   const Message = styled.div`
-  margin-top: -20vh;
-  font-size: 40px;
-  font-align: center;
-  font-weight: 500
-  `
+    margin-top: -20vh;
+    font-size: 40px;
+    font-align: center;
+    font-weight: 500;
+  `;
   const PageMessage = styled.div`
-  background-color: var(--primary-color);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  `
+    background-color: var(--primary-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  `;
 
   const fetchPosts = () => {
-    setPosts(backendPosts.filter(
-      (backendPost) => backendPost.parentId === null
-    ));
-  }
+    setPosts(
+      backendPosts.filter((backendPost) => backendPost.parentId === null)
+    );
+  };
 
   const addPost = (text) => {
     createPostApi(text).then((post) => {
@@ -61,7 +61,13 @@ export const Forum = () => {
     }
   }
 
-  React.useEffect(() => { if (currentUser) { fetchPosts() } else { setIsOpenModal(true) } }, [currentUser])
+  React.useEffect(() => {
+    if (currentUser) {
+      fetchPosts();
+    } else {
+      setIsOpenModal(true);
+    }
+  }, [currentUser]);
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleOnScroll);
@@ -74,63 +80,65 @@ export const Forum = () => {
 
       {openPost && <PostModal closeModal={setOpenPost} />}
 
-      {currentUser ? <div className="forum-page-container">
-        <div className={`left-menu ${isScroll ? "active" : ""} `}>
-          <p className="heading">Danh mục</p>
-          <div
-            className="other-pages"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            <Link to="" className="list-item hot-thread">
-              Bài viết nóng 🔥🔥🔥
-            </Link>
-            <Link to="/saved" className="list-item saved-thread">
-              Bài viết đã lưu ✅
-            </Link>
-          </div>
-        </div>
-
-        <div className="newsfeed">
-          <div
-            className="post-container"
-            onClick={() => {
-              setOpenPost(true);
-            }}
-          >
-            <p className="text">Hôm nay bạn có tin gì?</p>
-            <div className="choose-btn">
-              <p>+</p>
+      {currentUser ? (
+        <div className="forum-page-container">
+          <div className={`left-menu ${isScroll ? "active" : ""} `}>
+            <p className="heading">Danh mục</p>
+            <div
+              className="other-pages"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
+              <Link to="" className="list-item hot-thread">
+                Bài viết nóng 🔥🔥🔥
+              </Link>
+              <Link to="/saved" className="list-item saved-thread">
+                Bài viết đã lưu ✅
+              </Link>
             </div>
           </div>
-          <Post />
-          <div>
-            {posts.map((post) => (
-              <Post
-                post={post}
-                addComment={addPost}
-              // deleteComment={deletePost}
-              // updateComment={updatePost}
-              />
-            ))}
+
+          <div className="newsfeed">
+            <div
+              className="post-container"
+              onClick={() => {
+                setOpenPost(true);
+              }}
+            >
+              <p className="text">Hôm nay bạn có tin gì?</p>
+              <div className="choose-btn">
+                <p>+</p>
+              </div>
+            </div>
+            <Post />
+            <div>
+              {posts.map((post) => (
+                <Post
+                  post={post}
+                  addComment={addPost}
+                  // deleteComment={deletePost}
+                  // updateComment={updatePost}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className={`right-menu ${isScroll ? "active" : ""} `}>
+            <img
+              src="https://www.thesprucepets.com/thmb/sfuyyLvyUx636_Oq3Fw5_mt-PIc=/3760x2820/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg"
+              alt="your avatar"
+              className="your-avatar"
+            />
+            <Link to="/profilepage" className="your-name">
+              {currentUser ? currentUser.name : ""}
+            </Link>
+            <p className="your-level">{currentUser ? currentUser.email : ""}</p>
           </div>
         </div>
-
-        <div className={`right-menu ${isScroll ? "active" : ""} `}>
-          <img
-            src="https://www.thesprucepets.com/thmb/sfuyyLvyUx636_Oq3Fw5_mt-PIc=/3760x2820/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg"
-            alt="your avatar"
-            className="your-avatar"
-          />
-          <Link to="/profilepage" className="your-name">
-            {currentUser ? currentUser.name : ""}
-          </Link>
-          <p className="your-level">{currentUser ? currentUser.email : ""}</p>
-        </div>
-      </div> : <PageMessage>
-        <Message>
-          Bạn cần đăng nhập để sử dụng tính năng này
-        </Message>
-      </PageMessage>}
+      ) : (
+        <PageMessage>
+          <Message>Bạn cần đăng nhập để sử dụng tính năng này</Message>
+        </PageMessage>
+      )}
     </div>
   );
 };

@@ -10,7 +10,7 @@ import { getSavedPosts } from "../../api/savedAPI";
 export const SavedPage = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
 
-  const SavedPost = savedPost => (
+  const SavedPost = (savedPost) => (
     <div className="thread">
       <div className="user-overview">
         <div className="left-section">
@@ -26,13 +26,9 @@ export const SavedPage = () => {
         </div>
       </div>
       <p className="status">{savedPost.status}</p>
-      <img
-        src={savedPost.image}
-        alt=""
-        className="post-img"
-      />
+      <img src={savedPost.image} alt="" className="post-img" />
     </div>
-  )
+  );
   return (
     <div>
       <Header isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
@@ -61,15 +57,15 @@ export const SavedPage = () => {
         </div>
         {/* //*Code drop down */}
         <div className="list-thread">
-          {getSavedPosts.map(savedPost => (
+          {getSavedPosts.map((savedPost) => (
             <SavedPost
               creatorAvatar={savedPost.creatorAvatar}
               creator={savedPost.creator}
               createTime={savedPost.createTime}
               status={savedPost.status}
               image={savedPost.image}
-            />)
-          )}
+            />
+          ))}
         </div>
       </div>
 

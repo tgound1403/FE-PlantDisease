@@ -1,5 +1,5 @@
 import CommentForm from "./CommentForm";
-import { format } from 'timeago.js'
+import { format } from "timeago.js";
 const Comment = ({
   comment,
   replies,
@@ -26,7 +26,6 @@ const Comment = ({
   const canReply = Boolean(currentUserId);
   const canEdit = currentUserId === comment.userId && !timePassed;
   const replyId = parentId ? parentId : comment.id;
-
 
   return (
     <div key={comment.id} className="comment">

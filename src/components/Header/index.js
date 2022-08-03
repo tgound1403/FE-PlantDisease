@@ -67,7 +67,10 @@ export const Header = ({ isOpenModal, setIsOpenModal }) => {
         },
       };
       const { data } = await axios.post(
-        `${process.env.BACKEND_API_URL || 'https://desolate-everglades-44147.herokuapp.com'}/api/users/login`,
+        `${
+          process.env.BACKEND_API_URL ||
+          "https://desolate-everglades-44147.herokuapp.com"
+        }/api/users/login`,
 
         {
           email,
@@ -133,7 +136,10 @@ export const Header = ({ isOpenModal, setIsOpenModal }) => {
             },
           };
           const { data } = await axios.post(
-            `${process.env.BACKEND_API_URL || 'https://desolate-everglades-44147.herokuapp.com'}/api/users`,
+            `${
+              process.env.BACKEND_API_URL ||
+              "https://desolate-everglades-44147.herokuapp.com"
+            }/api/users`,
             {
               name,
               email,
@@ -141,7 +147,6 @@ export const Header = ({ isOpenModal, setIsOpenModal }) => {
               verified: false,
             },
             config
-
           );
           console.log("Register successful");
           history.push("/");
@@ -322,22 +327,25 @@ export const Header = ({ isOpenModal, setIsOpenModal }) => {
             <ul className="header__nav-list">
               <Link
                 to="/home"
-                className={`header__nav-item ${pathname === "/home" && !isOpenModal ? "active" : ""
-                  }`}
+                className={`header__nav-item ${
+                  pathname === "/home" && !isOpenModal ? "active" : ""
+                }`}
               >
                 <p className="header__nav-right">Trang chủ</p>
               </Link>
               <Link
                 to="/du-doan"
-                className={`header__nav-item ${pathname === "/du-doan" && !isOpenModal ? "active" : ""
-                  }`}
+                className={`header__nav-item ${
+                  pathname === "/du-doan" && !isOpenModal ? "active" : ""
+                }`}
               >
                 <p className="header__nav-right header__nav-predict">Dự đoán</p>
               </Link>
               <Link
                 to="/forum"
-                className={`header__nav-item ${pathname === "/forum" && !isOpenModal ? "active" : ""
-                  }`}
+                className={`header__nav-item ${
+                  pathname === "/forum" && !isOpenModal ? "active" : ""
+                }`}
               >
                 <p className="header__nav-right">Diễn đàn</p>
               </Link>

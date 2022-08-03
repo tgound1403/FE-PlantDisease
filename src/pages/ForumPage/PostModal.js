@@ -3,14 +3,14 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import "./PostModal.css";
 const axios = require("axios");
-const Compress = require('compress.js').default
+const Compress = require("compress.js").default;
 
 function PostModal({ closeModal, initialText = "hi" }) {
   // Set up storing image
   // Open Explorer
   const inputFile = useRef(null);
   const [imageToPreview, setImageToPreview] = useState();
-  const { currentUser } = useSelector(state => state.user)
+  const { currentUser } = useSelector((state) => state.user);
 
   const handlePreviewImage = (e) => {
     const file = e.target.files[0];
@@ -18,19 +18,19 @@ function PostModal({ closeModal, initialText = "hi" }) {
     file.preview = URL.createObjectURL(file);
   };
   async function resizeImageFn(file) {
-    const compress = new Compress()
+    const compress = new Compress();
 
     const resizedImage = await compress.compress([file], {
       size: 2, // the max size in MB, defaults to 2MB
       quality: 1, // the quality of the image, max is 1,
       maxWidth: 300, // the max width of the output image, defaults to 1920px
       maxHeight: 300, // the max height of the output image, defaults to 1920px
-      resize: true // defaults to true, set false if you do not want to resize the image width and height
-    })
+      resize: true, // defaults to true, set false if you do not want to resize the image width and height
+    });
     const img = resizedImage[0];
-    const base64str = img.data
-    const imgExt = img.ext
-    const resizedFile = Compress.convertBase64ToFile(base64str, imgExt)
+    const base64str = img.data;
+    const imgExt = img.ext;
+    const resizedFile = Compress.convertBase64ToFile(base64str, imgExt);
     return resizedFile;
   }
 
@@ -40,7 +40,6 @@ function PostModal({ closeModal, initialText = "hi" }) {
     const resizedImage = await resizeImageFn(imageFile);
     setImageToUpload(imageFile);
     setImageToUpload(resizedImage);
-
   };
 
   useEffect(() => {
@@ -75,7 +74,10 @@ function PostModal({ closeModal, initialText = "hi" }) {
     request.append("image", imageToUpload);
     axios({
       method: "POST",
-      url: `${process.env.BACKEND_API_URL || 'https://desolate-everglades-44147.herokuapp.com'}/api/post-with-img`,
+      url: `${
+        process.env.BACKEND_API_URL ||
+        "https://desolate-everglades-44147.herokuapp.com"
+      }/api/post-with-img`,
       data: request,
       headers: { "Content-Type": "multipart/form-data" },
     })
@@ -110,7 +112,7 @@ function PostModal({ closeModal, initialText = "hi" }) {
             value={postData.status}
             onChange={(e) => {
               handleChange(e);
-              setText(e.target.value)
+              setText(e.target.value);
             }}
             className="body-box"
           />
@@ -127,7 +129,7 @@ function PostModal({ closeModal, initialText = "hi" }) {
             <p className="hint"> Thêm vào bài viết của bạn </p>
             <div
               className="add-img-btn"
-              id='image'
+              id="image"
               // onClick={onButtonClick}
               onChange={handlePreviewImage}
             >
@@ -145,9 +147,9 @@ function PostModal({ closeModal, initialText = "hi" }) {
                   onFileChange(e);
                   handleChange(e);
                 }}
-              // style={{
-              //   display: "none",
-              // }}
+                // style={{
+                //   display: "none",
+                // }}
               />
               {/* </FaRegFileImage> */}
             </div>
@@ -160,7 +162,7 @@ function PostModal({ closeModal, initialText = "hi" }) {
               submit();
               closeModal();
             }}
-          // handleSubmit={onSubmit}
+            // handleSubmit={onSubmit}
           >
             Đăng bài
           </button>

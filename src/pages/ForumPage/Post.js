@@ -2,9 +2,9 @@ import React, { useState, useLayoutEffect } from "react";
 import CommentModal from "../../comments/CommentModal";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { BiUpvote, BiDownvote, BiComment, BiShareAlt } from "react-icons/bi";
-import { format } from 'timeago.js'
-require('dotenv').config()
-const axios = require('axios');
+import { format } from "timeago.js";
+require("dotenv").config();
+const axios = require("axios");
 const Post = () => {
   const [openComment, setOpenComment] = useState(false);
 
@@ -50,7 +50,7 @@ const Post = () => {
   const upvoteHandler = () => {
     try {
       // axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
-    } catch (err) { }
+    } catch (err) {}
     setUpVote(isUpVote ? upvote - 1 : upvote + 1);
     setIsUpVote(!isUpVote);
   };
@@ -58,31 +58,35 @@ const Post = () => {
   const downvoteHandler = () => {
     try {
       // axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
-    } catch (err) { }
+    } catch (err) {}
     setDownVote(isDownVote ? downvote - 1 : downvote + 1);
     setIsDownVote(!isDownVote);
   };
 
-
   const getPosts = () => {
-    setIsLoading(true)
-    axios.get(`${process.env.BACKEND_API_URL || 'https://desolate-everglades-44147.herokuapp.com'}/api/posts`)
+    setIsLoading(true);
+    axios
+      .get(
+        `${
+          process.env.BACKEND_API_URL ||
+          "https://desolate-everglades-44147.herokuapp.com"
+        }/api/posts`
+      )
       .then((res) => {
         const data = res.data;
-        let reverseData = data.reverse()
+        let reverseData = data.reverse();
         setPosts(reverseData);
-        setIsLoading(false)
+        setIsLoading(false);
         console.log("Posts has been received");
       })
       .catch((err) => {
-        alert("Error while get Post")
-        setIsLoading(false)
+        alert("Error while get Post");
+        setIsLoading(false);
         console.log(err);
-      })
-  }
+      });
+  };
 
   const displayPosts = (posts) => {
-
     if (!posts.length) return null;
 
     return posts.map((post, index) => (
@@ -94,30 +98,25 @@ const Post = () => {
         status={post.status}
         image={post.imageSrc}
       />
-    ))
-
-  }
+    ));
+  };
 
   let configImageData = (imgBase64) => {
-    var base64Flag = 'data:image/jpeg;base64,';
-    let image = base64Flag + imgBase64
-    return image
-  }
+    var base64Flag = "data:image/jpeg;base64,";
+    let image = base64Flag + imgBase64;
+    return image;
+  };
 
   useLayoutEffect(() => {
-    getPosts()
+    getPosts();
     // displayPosts(posts)
-  }, [])
+  }, []);
 
-  const PostItem = post => (
-    <div className="thread" key={post.id} >
+  const PostItem = (post) => (
+    <div className="thread" key={post.id}>
       <div className="user-overview">
         <div className="left-section">
-          <img
-            src={post.creatorAvatar}
-            alt="user-avatar"
-            className="avatar"
-          />
+          <img src={post.creatorAvatar} alt="user-avatar" className="avatar" />
           <div className="info">
             <p className="user-name clickable">{post.creator}</p>
             <p className="time">{format(post.createTime)}</p>
@@ -158,11 +157,10 @@ const Post = () => {
     </div>
   );
 
-
   return (
     <div id="wrapper">
       {isLoading ? <LoadingSpinner /> : displayPosts(posts)}
     </div>
   );
-}
+};
 export default Post;

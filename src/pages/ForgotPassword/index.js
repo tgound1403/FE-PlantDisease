@@ -5,13 +5,11 @@ import React, { useState } from "react";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import "../ForgotPassword/index.css";
-const axios = require('axios');
+const axios = require("axios");
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [isOpenModal, setIsOpenModal] = React.useState(false);
-
-
 
   const emailReset = async (e) => {
     e.preventDefault();
@@ -28,24 +26,24 @@ export const ForgotPassword = () => {
         {
           email,
         },
-        config,
+        config
       );
-      console.log(data)
-      alert('Liên kết đặt lại mật khẩu đã được gửi đến email của bạn')
+      console.log(data);
+      alert("Liên kết đặt lại mật khẩu đã được gửi đến email của bạn");
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div>
       <Header isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
       <div className="page-container">
-      <p className="page-heading">Forgot Password? Enter your email to start reset</p>
-        <form className='forgot-form-container' onSubmit={emailReset}>
-          <label className='form-label'>
-            Email
-          </label>
+        <p className="page-heading">
+          Forgot Password? Enter your email to start reset
+        </p>
+        <form className="forgot-form-container" onSubmit={emailReset}>
+          <label className="form-label">Email</label>
           <input
             required
             type="email"
@@ -54,11 +52,7 @@ export const ForgotPassword = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
-          <button
-            className="btn-send-email"
-            variant="primary"
-            type="submit"
-          >
+          <button className="btn-send-email" variant="primary" type="submit">
             Send email
           </button>
         </form>

@@ -6,7 +6,9 @@ function BlockModal({ closeModal }) {
     <div className="background">
       <div className="modal-container">
         <div className="top-modal">
-          <div className="modal-title">Bạn có chắc muốn chặn người dùng này? </div>
+          <div className="modal-title">
+            Bạn có chắc muốn chặn người dùng này?{" "}
+          </div>
           <div
             onClick={() => {
               closeModal();
@@ -23,7 +25,7 @@ function BlockModal({ closeModal }) {
               closeModal();
             }}
           >
-            Chặn 
+            Chặn
           </button>
         </div>
       </div>

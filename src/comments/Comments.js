@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
@@ -7,9 +6,8 @@ import {
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
 } from "../api/commentAPI.js";
-require('dotenv').config()
-const axios = require('axios');
-
+require("dotenv").config();
+const axios = require("axios");
 
 const Comments = ({ commentsUrl, currentUserId, closeModal }) => {
   const [backendComments, setBackendComments] = useState([]);
@@ -60,22 +58,27 @@ const Comments = ({ commentsUrl, currentUserId, closeModal }) => {
   };
 
   const getComments = () => {
-    axios.get(`${process.env.BACKEND_API_URL || "https://desolate-everglades-44147.herokuapp.com"}/api/comments`)
+    axios
+      .get(
+        `${
+          process.env.BACKEND_API_URL ||
+          "https://desolate-everglades-44147.herokuapp.com"
+        }/api/comments`
+      )
       .then((response) => {
         let data = response.data;
-        data = data.reverse()
+        data = data.reverse();
         setComments(data);
         console.log("Comment has been received");
         console.log(data);
       })
       .catch((error) => {
-        alert('Error while getting comments')
+        alert("Error while getting comments");
         console.log(error);
       });
-  }
+  };
 
   const displayComments = (comments) => {
-
     if (!comments.length) return null;
 
     return comments.map((comment, index) => (
@@ -90,8 +93,8 @@ const Comments = ({ commentsUrl, currentUserId, closeModal }) => {
         updateComment={updateComment}
         currentUserId={currentUserId}
       />
-    ))
-  }
+    ));
+  };
 
   useEffect(() => {
     // getCommentsApi().then((data) => {
@@ -106,9 +109,7 @@ const Comments = ({ commentsUrl, currentUserId, closeModal }) => {
         <h3 className="comments-title">Bình luận</h3>
       </div>
       <CommentForm submitLabel="Bình luận" handleSubmit={addComment} />
-      <div className="comments-container">
-        {displayComments(comments)}
-      </div>
+      <div className="comments-container">{displayComments(comments)}</div>
     </div>
   );
 };

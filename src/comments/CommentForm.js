@@ -1,5 +1,5 @@
 import { useState } from "react";
-const axios = require('axios');
+const axios = require("axios");
 
 const CommentForm = ({
   handleSubmit,
@@ -24,20 +24,17 @@ const CommentForm = ({
     };
 
     axios({
-      url: '/api/comments',
-      method: 'POST',
-      data: payload
+      url: "/api/comments",
+      method: "POST",
+      data: payload,
     })
       .then(() => {
-        console.log('data has been sent to server');
-
+        console.log("data has been sent to server");
       })
       .catch(() => {
-        console.log('error sending comment to server');
+        console.log("error sending comment to server");
       });
-
   };
-
 
   return (
     <form onSubmit={onSubmit}>
