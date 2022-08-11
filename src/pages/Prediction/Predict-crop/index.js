@@ -64,7 +64,7 @@ export const PredictCrop = () => {
       // phuong thuc post
       method: "POST",
       // duong link api
-      url: "http://localhost:5000/predict_crop",
+      url: "https://lobster-app-rken7.ondigitalocean.app/predict_crop",
       // data
       data: request,
       // nhieu du lieu

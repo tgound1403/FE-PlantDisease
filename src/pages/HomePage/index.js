@@ -2,7 +2,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 // Components
-import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { Link } from "react-router-dom";
 // Css
@@ -10,24 +9,23 @@ import "./index.css";
 
 import styled from "styled-components";
 
+const WelcomeMessage = styled.div`
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+  font-style: italic;
+  margin-left: 10vw;
+  background-color: #f5f5f5;
+  opacity: 0.7;
+  padding: 10px;
+  border-radius: 10px;
+  width: 55%;
+`;
 export const WelcomePage = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const handleOpenModal = () => {
     setIsOpenModal(true);
   };
-
-  const WelcomeMessage = styled.div`
-    font-size: 2.5rem;
-    margin-bottom: 5rem;
-    font-style: italic;
-    margin-left: 10vw;
-    background-color: #f5f5f5;
-    opacity: 0.7;
-    padding: 10px;
-    border-radius: 10px;
-    width: 55%;
-  `;
 
   return (
     <div>
@@ -40,9 +38,13 @@ export const WelcomePage = () => {
               <h1 className="banner__box__title">
                 SINH TRẮC BỆNH LÝ CÂY TRỒNG
               </h1>
-              <WelcomeMessage>
-                {currentUser ? "Chào mừng trở lại, " + currentUser.name : ""}
-              </WelcomeMessage>
+              {currentUser ? (
+                <WelcomeMessage>
+                  Chào mừng trở lại, {currentUser.name}
+                </WelcomeMessage>
+              ) : (
+                ""
+              )}
               <p className="banner__box__content">
                 Phân tích nhanh bệnh lý của cây trồng, tìm ra giải pháp điều trị
                 phù hợp để tăng năng suất cho cây
@@ -98,8 +100,6 @@ export const WelcomePage = () => {
           </div>
         </section>
       </div>
-
-      {/* <Footer /> */}
     </div>
   );
 };

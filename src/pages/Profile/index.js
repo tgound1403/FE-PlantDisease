@@ -35,7 +35,6 @@ export const Profile = () => {
   const [lastNameDB, setLastNameDB] = useState("");
   const [birthdayDB, setBirthdayDB] = useState(Date);
   const [phoneNumberDB, setPhoneNumberDB] = useState("");
-  const [emailDB, setEmailDB] = useState("");
   const [genderDB, setGenderDB] = useState("");
 
   const { currentUser } = useSelector((state) => state.user);

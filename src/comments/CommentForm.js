@@ -1,6 +1,6 @@
+import { useSelector } from "react-redux";
 import { useState } from "react";
 const axios = require("axios");
-
 const CommentForm = ({
   handleSubmit,
   submitLabel,
@@ -10,6 +10,7 @@ const CommentForm = ({
 }) => {
   const [text, setText] = useState(initialText);
   const isTextareaDisable = text.length === 0;
+  const { currentUser } = useSelector((state) => state.user);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -18,20 +19,24 @@ const CommentForm = ({
     setText("");
 
     const payload = {
-      username: "Trieu Duong",
+      username: `${currentUser.name}`,
       body: text,
       createdAt: Date.now(),
     };
 
     axios({
-      url: "/api/comments",
+      url: `${
+        process.env.BACKEND_API_URL ||
+        "https://desolate-everglades-44147.herokuapp.com"
+      }/api/comments`,
       method: "POST",
       data: payload,
     })
       .then(() => {
         console.log("data has been sent to server");
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err.message);
         console.log("error sending comment to server");
       });
   };

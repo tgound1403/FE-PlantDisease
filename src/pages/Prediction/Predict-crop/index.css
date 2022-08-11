@@ -1,6 +1,6 @@
 .main {
   background-color: var(--primary-color);
-  background-size: 100% 100%;
+  background-size: cover;
   min-height: 100vh;
 }
 
@@ -24,6 +24,7 @@
   background-color: rgb(255, 255, 255) !important;
   font-size: 28px;
 }
+
 /* 
 .form__text_field + .form__text_field {
   margin-bottom: 20px;

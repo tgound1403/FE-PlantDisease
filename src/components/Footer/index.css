@@ -1,11 +1,11 @@
 /* Footer */
 .footer {
-  background: var(--primary-color) url("../../assets/images/bg-homepage-3.png")
-    no-repeat center;
-  background-size: 100% 100%;
-  padding: 100px 0;
-  padding-top: 100px;
-  transform: translateY(-2px);
+  background: var(--primary-color) url("../../assets/images/bg-homepage-3.png") no-repeat center;
+  background-size: cover;
+  /* padding: 100px 0; */
+  /* padding-top: 100px; */
+  /* transform: translateY(-2px); */
+  z-index: -1;
 }
 
 .wrap-footer {
@@ -38,7 +38,7 @@
   background-color: var(--secondary-color);
 }
 
-.footer__link + .footer__link {
+.footer__link+.footer__link {
   margin-left: 16px;
 }
 

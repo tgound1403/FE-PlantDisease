@@ -12,6 +12,21 @@ import PostModal from "./PostModal";
 import Post from "./Post";
 import { createPost as createPostApi } from "../../api/postAPI";
 
+const Message = styled.div`
+  margin-top: -20vh;
+  font-size: 40px;
+  font-align: center;
+  font-weight: 500;
+`;
+const PageMessage = styled.div`
+  background-color: var(--primary-color);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 // *Export
 export const Forum = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
@@ -24,21 +39,6 @@ export const Forum = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [posts, setPosts] = useState([]);
-
-  const Message = styled.div`
-    margin-top: -20vh;
-    font-size: 40px;
-    font-align: center;
-    font-weight: 500;
-  `;
-  const PageMessage = styled.div`
-    background-color: var(--primary-color);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  `;
 
   const fetchPosts = () => {
     setPosts(

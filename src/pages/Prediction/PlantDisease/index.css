@@ -1,8 +1,7 @@
 /* /du-doan page */
 .banner-guess-page {
-  background: var(--primary-color)
-    url("../../../assets/images/bg-guesspage-1.png") no-repeat left;
-  background-size: 100% 100%;
+  background: var(--primary-color) url("../../../assets/images/bg-guesspage-1.png") no-repeat;
+  background-size: cover;
   height: 100vh;
 }
 
@@ -33,7 +32,7 @@
   text-overflow: ellipsis;
   word-break: break-word;
   line-height: 48px;
-  
+
 }
 
 .guess__file__btn-upload {
@@ -63,7 +62,7 @@
   margin: 40px 0;
   border: white;
   margin-left: 160px;
-  
+
 }
 
 .wrap-show-percent {
@@ -119,15 +118,16 @@
   font-size: 1.6rem;
   margin-top: 18px;
   background-color: var(--white-color);
-  margin-left: 100px;
+  margin-left: 120px;
   border-radius: 14px;
   padding: 10px 20px;
+  width: calc(max-content+40px);
 }
 
 .predict__contain {
   margin: 0 auto;
-  max-width: 600px;
-  min-height: 240px;
+  min-width: calc(100vw/3 - 40px);
+  min-height: 400px;
   background-color: rgb(204, 236, 204);
   border-radius: 14px;
   box-shadow: 2.8px 2.8px 2.9px rgba(0, 0, 0, 0.02),
@@ -163,14 +163,16 @@ p.predict__box__title {
 }
 
 .contain__Predict {
-  width: 600px;
-  margin-left: 100px;
+  width: 95vw;
+  margin-left: 40px;
   /* height: 1000px; */
   margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 li.contain__box__down__method {
-  list-style-type: circle;
   padding: 4px;
   font-size: 18px;
   text-align: justify;
@@ -180,18 +182,19 @@ li.contain__box__down__method {
   font-size: 18px;
   text-align: justify;
 }
+
 .on__right {
   position: relative;
-  left: 35vw;
+  /* left: 35vw; */
 }
 
 .enable__scroll {
   overflow-y: scroll;
-  height: 200px;
+  height: 300px;
 }
 
 .footer {
-  height: 70vh;
+  height: 100vh;
   /* transform: translateY(100px); */
 }
 
@@ -213,4 +216,19 @@ li.contain__box__down__method {
   line-height: 2;
   width: 800px;
   margin-left: 100px;
+}
+
+.reload-btn {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  width: max-content;
+  padding: 20px 40px;
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: 0 auto;
+  position: absolute;
+  cursor: pointer;
+  transform: translate(43vw, 5vh);
 }
