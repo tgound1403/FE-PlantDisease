@@ -38,7 +38,7 @@ function PostModal({ closeModal, initialText = "hi" }) {
     const imageFile = e.target.files[0];
     setImageToPreview(imageFile);
     const resizedImage = await resizeImageFn(imageFile);
-    setImageToUpload(imageFile);
+    // setImageToUpload(imageFile);
     setImageToUpload(resizedImage);
   };
 

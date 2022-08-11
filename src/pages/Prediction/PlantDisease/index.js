@@ -19,6 +19,7 @@ const displayListOfRecomendedDisease = (data) => {
 
 export const PlantDisease = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const [imageToUpload, setImageToUpload] = useState();
 
   const [formData, setFormData] = React.useState({
     img_upload: null,
@@ -45,6 +46,39 @@ export const PlantDisease = () => {
 
     fileNameRef.current.innerHTML = files[0]?.name || "Chọn ảnh";
     setName(files[0].name);
+  };
+
+  let onFileChange = async (e) => {
+    const imageFile = e.target.files[0];
+    // setImageToUpload(imageFile);
+    setImageToUpload(imageFile);
+  };
+
+  const sendPredictImage = async () => {
+    setFormData({ ...formData, img_upload_show: formData.img_upload });
+    console.log(imageToUpload);
+    const request = new FormData();
+    request.append("image", imageToUpload);
+    setIsLoading(true);
+    await axios({
+      method: "POST",
+      url: "https://lobster-app-rken7.ondigitalocean.app/predict_image",
+      data: request,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((res) => {
+        console.log("send image to predict succeed");
+        const responseData = res.data;
+        setPredictionData(responseData);
+        setIsLoading(false);
+        console.log(responseData);
+      })
+      .catch((err) => {
+        setErrorMessage("Error occurred when predicting image");
+        setPredictionData({});
+        setIsLoading(false);
+        console.log(err);
+      });
   };
 
   const handleUploadFile = async () => {
@@ -108,7 +142,10 @@ export const PlantDisease = () => {
                   id="img_upload"
                   accept="image/*"
                   hidden
-                  onChange={handleOnChangeFile}
+                  onChange={(e) => {
+                    onFileChange(e);
+                    handleOnChangeFile(e);
+                  }}
                 />
                 <div className="guess__file-display">
                   <label
@@ -120,7 +157,8 @@ export const PlantDisease = () => {
                   </label>
                   <div
                     className="guess__file__btn-upload"
-                    onClick={handleUploadFile}
+                    // onClick={handleUploadFile}
+                    onClick={sendPredictImage}
                     disabled={isLoading}
                   >
                     CHẨN ĐOÁN
@@ -128,22 +166,22 @@ export const PlantDisease = () => {
                 </div>
               </div>
               {errorMessage && <div className="error">{errorMessage}</div>}
+              <div className="wrap-show-img">
+                <img
+                  src={formData.img_upload_show}
+                  alt=""
+                  style={{
+                    borderRadius: "14px",
+                    height: "300px",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
               {isLoading ? (
                 <LoadingSpinner />
               ) : (
                 formData.img_upload_show && (
                   <>
-                    <div className="wrap-show-img">
-                      <img
-                        src={formData.img_upload_show}
-                        alt=""
-                        style={{
-                          borderRadius: "14px",
-                          height: "300px",
-                          objectFit: "cover",
-                        }}
-                      />
-                    </div>
                     <p className="percent-disease-text">
                       {predictionData["name"]}
                     </p>
