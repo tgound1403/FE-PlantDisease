@@ -51,6 +51,7 @@ function PostModal({ closeModal, initialText = "hi" }) {
   const [imageToUpload, setImageToUpload] = useState();
 
   const [postData, setPostData] = useState({
+    userId: currentUser._id,
     creatorAvatar: "https://wallpaper.dog/large/5439024.jpg",
     creator: currentUser.name,
     createTime: Date.now(),
@@ -75,8 +76,7 @@ function PostModal({ closeModal, initialText = "hi" }) {
     axios({
       method: "POST",
       url: `${
-        process.env.BACKEND_API_URL ||
-        "https://desolate-everglades-44147.herokuapp.com"
+        process.env.BACKEND_API_URL || "http://localhost:4000"
       }/api/post-with-img`,
       data: request,
       headers: { "Content-Type": "multipart/form-data" },

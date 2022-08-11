@@ -18,7 +18,7 @@ const WelcomeMessage = styled.div`
   opacity: 0.7;
   padding: 10px;
   border-radius: 10px;
-  width: 55%;
+  width: max-content;
 `;
 export const WelcomePage = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
