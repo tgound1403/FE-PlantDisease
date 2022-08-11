@@ -74,7 +74,7 @@
   background-color: var(--white-color);
 }
 
-.header__nav-item + .header__nav-item {
+.header__nav-item+.header__nav-item {
   margin-left: 16px;
 }
 
@@ -97,6 +97,7 @@ p.header__nav-right {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -129,4 +130,17 @@ p.header__nav-right {
 
 .forget-password:hover::after {
   inset: 0 0 0 0;
+}
+
+/* Mobile */
+@media (min-width: 0px) and (max-width: 768px) {
+  .header__logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: "UVF";
+  }
+
+  .header__nav-list {
+    display: none;
+  }
 }

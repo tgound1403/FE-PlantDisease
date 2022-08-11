@@ -228,7 +228,7 @@ export const PlantDisease = () => {
                           <div className="contain__box__top">
                             <div className="predict__box__picture">
                               <p className="predict__box__title">
-                                CÁCH ĐIỀU TRỊ CÁC BỆNH TƯƠNG TỰ
+                                CÁC BỆNH TƯƠNG TỰ & CÁCH ĐIỀU TRỊ
                               </p>
                             </div>
                           </div>
