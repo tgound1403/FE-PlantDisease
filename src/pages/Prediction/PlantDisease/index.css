@@ -121,7 +121,8 @@
   margin-left: 120px;
   border-radius: 14px;
   padding: 10px 20px;
-  width: calc(max-content + 40px);
+  /* width: calc(max-content + 40px); */
+  width: max-content + 40px;
 }
 
 .predict__contain {
