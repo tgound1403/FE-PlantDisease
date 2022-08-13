@@ -49,8 +49,8 @@ export const PlantDisease = () => {
   };
 
   let onFileChange = async (e) => {
+    predictionData["rc"] = [];
     const imageFile = e.target.files[0];
-    // setImageToUpload(imageFile);
     setImageToUpload(imageFile);
   };
 
@@ -81,34 +81,6 @@ export const PlantDisease = () => {
       });
   };
 
-  const handleUploadFile = async () => {
-    setFormData({ ...formData, img_upload_show: formData.img_upload });
-    // setPredictionData({})
-    var request = new FormData();
-    for (let key in name) {
-      request.append(key, name[key]);
-    }
-    setIsLoading(true);
-    await axios({
-      url: "http://localhost:5000/predict_image",
-      method: "POST",
-      data: request,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then((res) => {
-        const responseData = res.data;
-        setPredictionData(responseData);
-        setIsLoading(false);
-        console.log(responseData);
-      })
-      .catch((err) => {
-        setErrorMessage("Error occurred when predicting image");
-        setPredictionData({});
-        setIsLoading(false);
-        console.log(err);
-      });
-  };
-
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -117,7 +89,7 @@ export const PlantDisease = () => {
     return () => {
       setPredictionData({});
     };
-  }, []);
+  }, [displayListOfRecomendedDisease]);
 
   return (
     <div>
@@ -157,7 +129,6 @@ export const PlantDisease = () => {
                   </label>
                   <div
                     className="guess__file__btn-upload"
-                    // onClick={handleUploadFile}
                     onClick={sendPredictImage}
                     disabled={isLoading}
                   >
@@ -236,7 +207,7 @@ export const PlantDisease = () => {
                             <ul className="contain__box__down__title">
                               <li className="contain__box__down__method enable__scroll">
                                 {predictionData !== {} &&
-                                predictionData["rc"] !== ""
+                                predictionData["rc"] !== []
                                   ? displayListOfRecomendedDisease(
                                       predictionData["rc"]
                                     )
